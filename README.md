@@ -11,7 +11,7 @@ Instant file sharing and storage
 
 ## `sb help [COMMAND]`
 
-display help for Sideboard
+Displays the help for Sideboard
 
 ```
 USAGE
@@ -37,8 +37,8 @@ USAGE
 OPTIONS
   -d, --dryrun         dry run
   -f, --force          force reinitialization
-  -n, --name=name      name of S3 bucket
-  -r, --region=region  AWS region for S3 bucket
+  -n, --name=name      name of the S3 bucket
+  -r, --region=region  AWS region for the S3 bucket
 
 DESCRIPTION
   ...
@@ -47,4 +47,3 @@ DESCRIPTION
 
 _See code: [src/commands/init.js](https://github.com/stuartellis/sideboard/blob/v0.1.0/src/commands/init.js)_
 <!-- commandsstop -->
-# sideboard
