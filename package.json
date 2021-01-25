@@ -1,0 +1,58 @@
+{
+  "name": "sideboard",
+  "description": "Handy filestore",
+  "version": "0.1.0",
+  "author": "Stuart Ellis <stuart@stuartellis.name>",
+  "bin": {
+    "sb": "./bin/run"
+  },
+  "bugs": "https://github.com/stuartellis/sideboard/issues",
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.3.0",
+    "@oclif/command": "^1.8.0",
+    "@oclif/config": "^1.17.0",
+    "@oclif/plugin-help": "^3.2.1",
+    "cli-table": "^0.3.4",
+    "fs-extra": "^9.1.0"
+  },
+  "devDependencies": {
+    "@oclif/dev-cli": "^1.26.0",
+    "@oclif/test": "^1.2.8",
+    "chai": "^4.2.0",
+    "eslint": "^5.16.0",
+    "eslint-config-oclif": "^3.1.0",
+    "globby": "^10.0.2",
+    "mocha": "^5.2.0",
+    "nyc": "^14.1.1"
+  },
+  "engines": {
+    "node": ">=10.0.0"
+  },
+  "files": [
+    "/bin",
+    "/npm-shrinkwrap.json",
+    "/oclif.manifest.json",
+    "/src"
+  ],
+  "homepage": "https://github.com/stuartellis/sideboard",
+  "keywords": [
+    "oclif"
+  ],
+  "license": "MIT",
+  "main": "src/index.js",
+  "oclif": {
+    "commands": "./src/commands",
+    "bin": "sb",
+    "plugins": [
+      "@oclif/plugin-help"
+    ]
+  },
+  "repository": "stuartellis/sideboard",
+  "scripts": {
+    "postpack": "rm -f oclif.manifest.json",
+    "posttest": "eslint .",
+    "prepack": "oclif-dev manifest && oclif-dev readme",
+    "test": "nyc mocha --forbid-only \"test/**/*.test.js\"",
+    "version": "oclif-dev readme && git add README.md"
+  }
+}
