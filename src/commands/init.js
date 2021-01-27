@@ -9,40 +9,62 @@ class InitCommand extends Command {
     const {flags} = this.parse(InitCommand)
     let userConfig = new UserConfig()
     userConfig.dir = this.config.configDir
-
     const configExists = await userConfig.fileExists()
     if (configExists) {
-      this.warn('Configuration file already exists')
+      if (flags.dryrun) {
+        this.log('Dry run: Configuration file already exists')
+      } else {
+        this.warn('Configuration file already exists')
+      }
       if (flags.force) {
         this.warn('Forcing reinitialization')
-        await this.generateConfig(userConfig, flags)
+        await this.generateConfig(flags, userConfig)
         await userConfig.load()
       } else {
         await userConfig.load()
         if (userConfig.awsRegion) {
-          this.warn(`Existing configuration specifies an AWS Region. AWS Region: ${userConfig.awsRegion}`)
+          this.log(`Existing configuration specifies an AWS Region. AWS Region: ${userConfig.awsRegion}`)
         }
         if (userConfig.s3BucketName) {
-          this.warn(`Existing configuration specifies an S3 bucket name. Bucket: ${userConfig.s3BucketName}`)
+          this.log(`Existing configuration specifies an S3 bucket name. Bucket: ${userConfig.s3BucketName}`)
         }
       }
+    } else if (flags.dryrun) {
+      this.log('Dry run: This would generate a configuration file')
+      await this.generateConfig(flags, userConfig)
     } else {
-      await this.generateConfig(userConfig, flags)
+      this.log('Generating configuration file')
+      await this.generateConfig(flags, userConfig)
       await userConfig.load()
     }
 
     const s3 = new S3Adapter(userConfig.awsRegion, userConfig.s3BucketName)
-    const bucketExists = await s3.bucketExists()
+    const bucketExists = await this.checkBucket(flags, userConfig, s3)
+
     if (bucketExists) {
       this.warn(`Bucket already exists. Bucket: ${userConfig.s3BucketName} in ${userConfig.awsRegion}`)
     } else {
-      await this.createBucket(userConfig, s3)
+      await this.createBucket(flags, userConfig, s3)
     }
   }
 
-  async createBucket(userConfig, s3) {
+  async checkBucket(flags, userConfig, s3) {
+    let bucketExists = false
     if (flags.dryrun) {
-      this.log('Dry run: completed')
+      this.log(`Dry run: Would check for the S3 bucket: ${userConfig.s3BucketName} in ${userConfig.awsRegion}`)
+    } else {
+      try {
+        bucketExists = await s3.bucketExists()
+      } catch (error) {
+        this.error(`Could not check for the S3 bucket. Bucket: ${userConfig.s3BucketName} in ${userConfig.awsRegion}, ${error}`, {exit: 1})
+      }
+    }
+    return bucketExists
+  }
+
+  async createBucket(flags, userConfig, s3) {
+    if (flags.dryrun) {
+      this.log(`Dry run: Would create the S3 bucket: ${userConfig.s3BucketName} in ${userConfig.awsRegion}`)
     } else {
       try {
         await s3.createBucket()
@@ -55,11 +77,11 @@ class InitCommand extends Command {
     }
   }
 
-  async generateConfig(userConfig, flags) {
+  async generateConfig(flags, userConfig) {
     userConfig.awsRegion = flags.region || process.env.AWS_REGION || 'us-east-1'
     userConfig.s3BucketName = flags.name || `${identifiers().randString()}-${identifiers().randString()}-${userConfig.awsRegion}`
     if (flags.dryrun) {
-      this.log(`Dry run: Would specify the S3 bucket ${userConfig.s3BucketName} in ${userConfig.awsRegion}`)
+      this.log(`Dry run: Configuration would specify the S3 bucket ${userConfig.s3BucketName} in ${userConfig.awsRegion}`)
     } else {
       this.log(`Generating configuration. Bucket: ${userConfig.s3BucketName} in ${userConfig.awsRegion}`)
       try {
