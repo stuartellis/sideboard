@@ -6,6 +6,7 @@ Instant file sharing and storage.
 This creates and manages an S3 bucket for you.
 
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
+[![License](https://img.shields.io/npm/l/sideboard.svg)](https://github.com/stuartellis/sideboard/blob/master/package.json)
 
 <!-- toc -->
 * [Deployment](#deployment)
