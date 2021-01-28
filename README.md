@@ -9,6 +9,12 @@ Instant file sharing and storage
 [![Downloads/week](https://img.shields.io/npm/dw/sideboard.svg)](https://npmjs.org/package/sideboard)
 [![License](https://img.shields.io/npm/l/sideboard.svg)](https://github.com/stuartellis/sideboard/blob/master/package.json)
 
+## Building Packages 
+
+Use *oclif-dev* to build native packages:
+
+    npx oclif-dev pack:macos
+
 ## `sb help [COMMAND]`
 
 Displays the help for Sideboard

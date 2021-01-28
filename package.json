@@ -43,11 +43,14 @@
   "oclif": {
     "commands": "./src/commands",
     "bin": "sb",
+    "macos": {
+      "identifier": "org.stuartellis.sideboard"
+    },
     "plugins": [
       "@oclif/plugin-help"
     ]
   },
-  "repository": "stuartellis/sideboard",
+  "repository": "https://github.com/stuartellis/sideboard",
   "scripts": {
     "postpack": "rm -f oclif.manifest.json",
     "posttest": "eslint .",
