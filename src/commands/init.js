@@ -94,8 +94,7 @@ class InitCommand extends Command {
   }
 }
 
-InitCommand.description = `creates the configuration
-...
+InitCommand.description = `creates the configuration and the bucket
 Creates the configuration file and the S3 bucket.
 If you do not specify a name for the S3 bucket, the bucket will be created with a random name.
 `

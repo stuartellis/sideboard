@@ -34,7 +34,6 @@ class FlushCommand extends Command {
 }
 
 FlushCommand.description = `empties the S3 bucket
-...
 This deletes all of the files in the S3 bucket.
 `
 

@@ -40,7 +40,6 @@ class DestroyCommand extends Command {
 }
 
 DestroyCommand.description = `destroys the bucket
-...
 This deletes all of the files in the bucket, and destroys the bucket.
 `
 

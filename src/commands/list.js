@@ -44,7 +44,6 @@ class ListCommand extends Command {
 }
 
 ListCommand.description = `lists the contents of the bucket
-...
 Displays a list of the files in the bucket
 `
 
