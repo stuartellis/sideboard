@@ -1,13 +1,11 @@
 Sideboard
 =========
 
-Instant file sharing and storage
+Instant file sharing and storage.
+
+This creates and manages an S3 bucket for you.
 
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
-[![Version](https://img.shields.io/npm/v/sideboard.svg)](https://npmjs.org/package/sideboard)
-[![CircleCI](https://circleci.com/gh/stuartellis/sideboard/tree/master.svg?style=shield)](https://circleci.com/gh/stuartellis/sideboard/tree/master)
-[![Downloads/week](https://img.shields.io/npm/dw/sideboard.svg)](https://npmjs.org/package/sideboard)
-[![License](https://img.shields.io/npm/l/sideboard.svg)](https://github.com/stuartellis/sideboard/blob/master/package.json)
 
 ## Deployment 
 
@@ -38,7 +36,7 @@ _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.2.1
 
 ## `sb init`
 
-Creates the configuration and the bucket
+Creates the configuration and the S3 bucket
 
 ```
 USAGE
