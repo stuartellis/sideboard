@@ -24,7 +24,8 @@ Use *oclif-dev* to build native packages:
 
     npx oclif-dev pack:win
 
-> To build Windows packages, You must run this command on a Windows system that has [7-Zip](https://www.7-zip.org/) installed.
+> To build Windows packages, you must run this command on a Windows system that has [7-Zip](https://www.7-zip.org/) installed.
+<!-- deploymentstop -->
 
 <!-- usage -->
 ## Usage
@@ -72,7 +73,6 @@ To reset Sideboard completely, first destroy the bucket, and then force it to re
 
 <!-- usagestop -->
 
-<!-- deploymentstop -->
 <!-- commands -->
 ## `sb help [COMMAND]`
 
