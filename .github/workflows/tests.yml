@@ -1,4 +1,4 @@
-name: test-sideboard
+name: tests
 on: [push]
 jobs:
   build:
