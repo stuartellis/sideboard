@@ -28,15 +28,25 @@ Use *oclif-dev* to build native packages:
 <!-- usage -->
 ## Usage
 
-> You must have an AWS account and AWS credentials set up.
+> To use this tool, you must have an AWS account and AWS credentials set up.
 
-First, run *init* to create a bucket:
+First, run *init* to create an S3 bucket:
 
     sb init
 
 By default, Sideboard creates a bucket with a random name in the us-east-1 region. To specify a name and region, use the *-n* and *-r* options.
 
     sb init -n my-bucket-name -r eu-west-1
+
+```
+❯ sb init
+Sideboard: Initializing
+Generating configuration. Bucket: tr8u3ptr6pi-k47gbmndilj-us-east-1 in us-east-1
+New configuration saved to /Users/stuartellis/.config/sideboard
+Created the S3 bucket. Bucket: tr8u3ptr6pi-k47gbmndilj-us-east-1 in us-east-1
+To access this bucket, use the S3 address s3://tr8u3ptr6pi-k47gbmndilj-us-east-1
+Example: aws s3 ls s3://tr8u3ptr6pi-k47gbmndilj-us-east-1 --region us-east-1
+```
 
 This will also generate a configuration file in within your home directory. For example, on macOS, it will create the configuration file in *.config/sideboard/*.
 
