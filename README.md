@@ -7,6 +7,7 @@ This creates and manages an S3 bucket for you.
 
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
 [![License](https://img.shields.io/github/license/stuartellis/sideboard.svg)](https://github.com/stuartellis/sideboard)
+![tests](https://github.com/stuartellis/sideboard/workflows/test-sideboard/badge.svg)
 
 <!-- toc -->
 * [Deployment](#deployment)
