@@ -34,7 +34,7 @@ First, run *init* to create an S3 bucket:
 
     sb init
 
-By default, Sideboard creates a bucket with a random name in the us-east-1 region. To specify a name and region, use the *-n* and *-r* options.
+By default, Sideboard creates a bucket with a random name in the AWS region  *us-east-1*. To specify a bucket name and AWS region, use the *-n* and *-r* options.
 
     sb init -n my-bucket-name -r eu-west-1
 
@@ -42,7 +42,7 @@ By default, Sideboard creates a bucket with a random name in the us-east-1 regio
 ❯ sb init
 Sideboard: Initializing
 Generating configuration. Bucket: tr8u3ptr6pi-k47gbmndilj-us-east-1 in us-east-1
-New configuration saved to /Users/stuartellis/.config/sideboard
+New configuration saved to /Users/YOU/.config/sideboard
 Created the S3 bucket. Bucket: tr8u3ptr6pi-k47gbmndilj-us-east-1 in us-east-1
 To access this bucket, use the S3 address s3://tr8u3ptr6pi-k47gbmndilj-us-east-1
 Example: aws s3 ls s3://tr8u3ptr6pi-k47gbmndilj-us-east-1 --region us-east-1
