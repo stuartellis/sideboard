@@ -33,7 +33,6 @@ class InitCommand extends Command {
       this.log('Dry run: This would generate a configuration file')
       await this.generateConfig(flags, userConfig)
     } else {
-      this.log('Generating configuration file')
       await this.generateConfig(flags, userConfig)
       await userConfig.load()
     }
