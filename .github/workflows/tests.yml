@@ -8,12 +8,17 @@ jobs:
         node: [ '10', '12', '14' ]
     name: Node.js ${{ matrix.node }}
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout source code
+        uses: actions/checkout@v2
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node }}
-      - run: npm ci
-      - run: ./bin/run --version
-      - run: ./bin/run --help
-      - run: npm test
+      - name: Install dependencies
+        run: npm ci
+      - name: Show application version
+        run: ./bin/run --version
+      - name: Show application help
+        run: ./bin/run --help
+      - name: Run tests
+        run: npm test
