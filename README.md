@@ -30,7 +30,7 @@ Use *oclif-dev* to build native packages:
 <!-- usage -->
 ## Usage
 
-> To use this tool, you must have an AWS account and AWS credentials set up.
+> To use this tool, you must have an AWS account, and AWS credentials set up on your system.
 
 First, run *init* to create an S3 bucket:
 
