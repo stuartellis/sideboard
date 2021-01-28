@@ -52,6 +52,7 @@
   },
   "repository": "https://github.com/stuartellis/sideboard",
   "scripts": {
+    "clean": "rm -fr dist tmp oclif.manifest.json",
     "postpack": "rm -f oclif.manifest.json",
     "posttest": "eslint .",
     "prepack": "oclif-dev manifest && oclif-dev readme",
