@@ -7,16 +7,62 @@ This creates and manages an S3 bucket for you.
 
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
 
+<!-- toc -->
+* [Deployment](#deployment)
+* [Usage](#usage)
+* [Commands](#commands)
+<!-- tocstop -->
+<!-- deployment -->
 ## Deployment 
 
-To run this command-line utility from a Git clone, use Use *npm link* to register it on your system:
+To run this command-line utility from a Git clone, use *npm link* to register it on your system:
 
     npm link
 
 Use *oclif-dev* to build native packages:
 
-    npx oclif-dev pack:macos
+    npx oclif-dev pack:win
 
+> To build Windows packages, You must run this command on a Windows system that has [7-Zip](https://www.7-zip.org/) installed.
+
+<!-- usage -->
+## Usage
+
+> You must have an AWS account and AWS credentials set up.
+
+First, run *init* to create a bucket:
+
+    sb init
+
+By default, Sideboard creates a bucket with a random name in the us-east-1 region. To specify a name and region, use the *-n* and *-r* options.
+
+    sb init -n my-bucket-name -r eu-west-1
+
+This will also generate a configuration file in within your home directory. For example, on macOS, it will create the configuration file in *.config/sideboard/*.
+
+To see the contents of the bucket, use the *list* command:
+
+    sb list
+
+To delete all of the files in the bucket, use the *flush* command:
+
+    sb flush
+
+To empty and delete the bucket, use the *destroy* command:
+
+    sb destroy
+
+The configuration file will remain, so that you can recreate the bucket with the same name each time that you run *sb init*. 
+
+To reset Sideboard completely, first destroy the bucket, and then force it to reinitialize:
+
+    sb destroy
+    sb init -f
+
+<!-- usagestop -->
+
+<!-- deploymentstop -->
+<!-- commands -->
 ## `sb help [COMMAND]`
 
 Displays the help for Sideboard
