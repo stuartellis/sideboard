@@ -11,7 +11,7 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v2
       - name: Cache Node.js modules
-        uses: actions/cache@v2
+        uses: actions/cache@v2.1.4
         env:
           cache-name: cache-node-modules
         with:
