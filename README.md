@@ -15,7 +15,7 @@ This creates and manages an S3 bucket for you.
 <!-- deployment -->
 ## Deployment 
 
-To run this command-line utility from a Git clone, use *npm link* to register it on your system:
+To run this command-line utility from a Git clone of the repository, use *npm link* to register it on your system:
 
     npm link
 
