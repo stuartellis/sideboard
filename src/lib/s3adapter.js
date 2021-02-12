@@ -1,4 +1,5 @@
-const {S3, CreateBucketCommand, DeleteBucketCommand, DeleteObjectsCommand, HeadBucketCommand, ListObjectsV2Command} = require('@aws-sdk/client-s3')
+const {S3, CreateBucketCommand, DeleteBucketCommand, DeleteObjectsCommand, GetObjectCommand, HeadBucketCommand, ListObjectsV2Command} = require('@aws-sdk/client-s3')
+const {getSignedUrl} = require('@aws-sdk/s3-request-presigner')
 
 class S3Adapter {
   constructor(region, bucketName) {
@@ -77,6 +78,12 @@ class S3Adapter {
       return this.listAllObjects(data, response.NextContinuationToken)
     }
     return data
+  }
+
+  async presign(filePath, expiresIn) {
+    const getObjectParams = {Bucket: this.bucketName, Key: filePath}
+    const command = new GetObjectCommand(getObjectParams)
+    return getSignedUrl(this.s3, command, {expiresIn: expiresIn})
   }
 }
 

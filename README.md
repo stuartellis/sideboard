@@ -10,9 +10,7 @@ This creates and manages an S3 bucket for you.
 ![tests](https://github.com/stuartellis/sideboard/workflows/tests/badge.svg)
 
 <!-- toc -->
-* [Deployment](#deployment)
-* [Usage](#usage)
-* [Commands](#commands)
+
 <!-- tocstop -->
 <!-- deployment -->
 ## Deployment 
@@ -29,126 +27,31 @@ Use *oclif-dev* to build native packages:
 <!-- deploymentstop -->
 
 <!-- usage -->
-## Usage
-
-> To use this tool, you must have an AWS account, and AWS credentials set up on your system.
-
-First, run *init* to create an S3 bucket:
-
-    sb init
-
-By default, Sideboard creates a bucket with a random name in the AWS region  *us-east-1*. 
-
+```sh-session
+$ npm install -g sideboard
+$ sb COMMAND
+running command...
+$ sb (-v|--version|version)
+sideboard/0.1.0 darwin-x64 node-v12.20.1
+$ sb --help [COMMAND]
+USAGE
+  $ sb COMMAND
+...
 ```
-❯ sb init
-Sideboard: Initializing
-Generating configuration. Bucket: tr8u3ptr6pi-k47gbmndilj-us-east-1 in us-east-1
-New configuration saved to /Users/YOU/.config/sideboard
-Created the S3 bucket. Bucket: tr8u3ptr6pi-k47gbmndilj-us-east-1 in us-east-1
-To access this bucket, use the S3 address s3://tr8u3ptr6pi-k47gbmndilj-us-east-1
-Example: aws s3 ls s3://tr8u3ptr6pi-k47gbmndilj-us-east-1 --region us-east-1
-```
-
-To specify a bucket name and AWS region, use the *-n* and *-r* options.
-
-    sb init -n my-bucket-name -r eu-west-1
-
-To see the contents of the bucket, use the *list* command:
-
-    sb list
-
-To delete all of the files in the bucket, use the *flush* command:
-
-    sb flush
-
-To empty and delete the bucket, use the *destroy* command:
-
-    sb destroy
-
-The configuration file will remain, so that you can recreate the bucket with the same name each time that you run *sb init*. 
-
-To reset Sideboard completely, first destroy the bucket, and then force it to reinitialize:
-
-    sb destroy
-    sb init -f
-
 <!-- usagestop -->
 
 <!-- commands -->
-## `sb help [COMMAND]`
-
-Displays the help for Sideboard
-
-```
-USAGE
-  $ sb help [COMMAND]
-
-ARGUMENTS
-  COMMAND  command to show help for
-
-OPTIONS
-  --all  see all commands in CLI
-```
-
-_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.2.1/src/commands/help.ts)_
-
-## `sb init`
-
-Creates the configuration and the S3 bucket
-
-```
-USAGE
-  $ sb init
-
-OPTIONS
-  -d, --dryrun         dry run
-  -f, --force          force reinitialization
-  -n, --name=name      name of the S3 bucket
-  -r, --region=region  AWS region for the S3 bucket
-
-DESCRIPTION
-  Creates the configuration file and S3 bucket
-```
-
-_See code: [src/commands/init.js](https://github.com/stuartellis/sideboard/blob/v0.1.0/src/commands/init.js)_
-
-## `sb list`
-
-Lists the contents of the bucket
-
-```
-USAGE
-  $ sb list
-
-OPTIONS
-  -d, --dryrun  dry run
-
-DESCRIPTION
-  Displays a list of the files in the bucket
-```
-
-_See code: [src/commands/list.js](https://github.com/stuartellis/sideboard/blob/v0.1.0/src/commands/list.js)_
-
-## `sb flush`
-
-Creates the configuration
-
-```
-USAGE
-  $ sb flush
-
-OPTIONS
-  -d, --dryrun  dry run
-
-DESCRIPTION
-  This deletes all of the files in the S3 bucket.
-```
-
-_See code: [src/commands/flush.js](https://github.com/stuartellis/sideboard/blob/v0.1.0/src/commands/flush.js)_
+* [`sb destroy`](#sb-destroy)
+* [`sb flush`](#sb-flush)
+* [`sb help [COMMAND]`](#sb-help-command)
+* [`sb info`](#sb-info)
+* [`sb init`](#sb-init)
+* [`sb list`](#sb-list)
+* [`sb presign`](#sb-presign)
 
 ## `sb destroy`
 
-Destroys the bucket
+destroys the bucket
 
 ```
 USAGE
@@ -163,9 +66,43 @@ DESCRIPTION
 
 _See code: [src/commands/destroy.js](https://github.com/stuartellis/sideboard/blob/v0.1.0/src/commands/destroy.js)_
 
+## `sb flush`
+
+empties the S3 bucket
+
+```
+USAGE
+  $ sb flush
+
+OPTIONS
+  -d, --dryrun  dry run
+
+DESCRIPTION
+  This deletes all of the files in the S3 bucket.
+```
+
+_See code: [src/commands/flush.js](https://github.com/stuartellis/sideboard/blob/v0.1.0/src/commands/flush.js)_
+
+## `sb help [COMMAND]`
+
+display help for sb
+
+```
+USAGE
+  $ sb help [COMMAND]
+
+ARGUMENTS
+  COMMAND  command to show help for
+
+OPTIONS
+  --all  see all commands in CLI
+```
+
+_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.2.1/src/commands/help.ts)_
+
 ## `sb info`
 
-Shows the current configuration
+shows the current configuration
 
 ```
 USAGE
@@ -180,5 +117,61 @@ DESCRIPTION
 ```
 
 _See code: [src/commands/info.js](https://github.com/stuartellis/sideboard/blob/v0.1.0/src/commands/info.js)_
-<!-- commandsstop -->
 
+## `sb init`
+
+creates the configuration and the bucket
+
+```
+USAGE
+  $ sb init
+
+OPTIONS
+  -d, --dryrun         dry run
+  -f, --force          force reinitialization
+  -n, --name=name      name of the S3 bucket
+  -r, --region=region  AWS region for the S3 bucket
+
+DESCRIPTION
+  Creates the configuration file and the S3 bucket.
+  If you do not specify a name for the S3 bucket, the bucket will be created with a random name.
+```
+
+_See code: [src/commands/init.js](https://github.com/stuartellis/sideboard/blob/v0.1.0/src/commands/init.js)_
+
+## `sb list`
+
+lists the contents of the bucket
+
+```
+USAGE
+  $ sb list
+
+OPTIONS
+  -d, --dryrun  dry run
+
+DESCRIPTION
+  Displays a list of the files in the bucket
+```
+
+_See code: [src/commands/list.js](https://github.com/stuartellis/sideboard/blob/v0.1.0/src/commands/list.js)_
+
+## `sb presign`
+
+Provides a presigned URL for a file in the S3 bucket.
+
+```
+USAGE
+  $ sb presign
+
+OPTIONS
+  -d, --duration=7200 duration of URL in seconds (optional)
+  -f, --file=path     path of file in S3 bucket
+
+DESCRIPTION
+  ...
+  Provides a presigned URL for getting a file in the S3 bucket
+```
+
+_See code: [src/commands/presign.js](https://github.com/stuartellis/sideboard/blob/v0.1.0/src/commands/presign.js)_
+<!-- commandsstop -->

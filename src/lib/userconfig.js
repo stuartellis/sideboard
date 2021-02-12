@@ -7,6 +7,7 @@ class UserConfig {
     this.file = 'config.json'
     this.awsRegion = ''
     this.s3BucketName = ''
+    this.presignedUrlExpiry = 3600
   }
 
   get path() {
@@ -18,13 +19,14 @@ class UserConfig {
   }
 
   async load() {
-    const {awsRegion, s3BucketName} = await fs.readJSON(this.path)
+    const {awsRegion, s3BucketName, presignedUrlExpiry} = await fs.readJSON(this.path)
     this.awsRegion = awsRegion
     this.s3BucketName = s3BucketName
+    this.presignedUrlExpiry = presignedUrlExpiry
   }
 
   async save() {
-    const data = {awsRegion: this.awsRegion, s3BucketName: this.s3BucketName}
+    const data = {awsRegion: this.awsRegion, s3BucketName: this.s3BucketName, presignedUrlExpiry: this.presignedUrlExpiry}
     await this.makeDir()
     await fs.writeJSON(this.path, data)
   }
