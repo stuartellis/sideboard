@@ -51,7 +51,7 @@ USAGE
 
 ## `sb destroy`
 
-destroys the bucket
+Destroys the S3 bucket.
 
 ```
 USAGE
@@ -68,7 +68,7 @@ _See code: [src/commands/destroy.js](https://github.com/stuartellis/sideboard/bl
 
 ## `sb flush`
 
-empties the S3 bucket
+Empties the S3 bucket.
 
 ```
 USAGE
@@ -85,7 +85,7 @@ _See code: [src/commands/flush.js](https://github.com/stuartellis/sideboard/blob
 
 ## `sb help [COMMAND]`
 
-display help for sb
+Display help information for the Sideboard tool.
 
 ```
 USAGE
@@ -102,7 +102,7 @@ _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.2.1
 
 ## `sb info`
 
-shows the current configuration
+Shows the current configuration of Sideboard.
 
 ```
 USAGE
@@ -120,7 +120,7 @@ _See code: [src/commands/info.js](https://github.com/stuartellis/sideboard/blob/
 
 ## `sb init`
 
-creates the configuration and the bucket
+Creates a configuration and the S3 bucket.
 
 ```
 USAGE
@@ -141,7 +141,7 @@ _See code: [src/commands/init.js](https://github.com/stuartellis/sideboard/blob/
 
 ## `sb list`
 
-lists the contents of the bucket
+Lists the current contents of the S3 bucket.
 
 ```
 USAGE
