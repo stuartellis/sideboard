@@ -1,1 +1,1 @@
-{"awsRegion": "aa-test-1", "s3BucketName": "sideboard-fake-aa-test-1"}
+{"awsRegion": "aa-test-1", "s3BucketName": "sideboard-fake-aa-test-1", "presignedUrlExpiry": 3600}
