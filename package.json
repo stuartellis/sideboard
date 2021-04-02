@@ -9,7 +9,7 @@
   "bugs": "https://github.com/stuartellis/sideboard/issues",
   "dependencies": {
     "@aws-sdk/client-s3": "^3.6.0",
-    "@aws-sdk/s3-request-presigner": "^3.6.0",
+    "@aws-sdk/s3-request-presigner": "^3.11.0",
     "@oclif/command": "^1.8.0",
     "@oclif/config": "^1.17.0",
     "@oclif/plugin-help": "^3.2.1",
