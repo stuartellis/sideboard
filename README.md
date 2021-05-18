@@ -1,9 +1,9 @@
 Sideboard
 =========
 
-Instant file sharing and storage.
+Convenient short-term file storage and sharing.
 
-This creates and manages an S3 bucket for you.
+This command-line tool creates and manages a storage bucket on AWS for you.
 
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
 [![License](https://img.shields.io/github/license/stuartellis/sideboard.svg)](https://github.com/stuartellis/sideboard)
@@ -12,8 +12,8 @@ This creates and manages an S3 bucket for you.
 <!-- toc -->
 
 <!-- tocstop -->
-<!-- deployment -->
-## Deployment 
+<!-- installation -->
+## Installation 
 
 To run this command-line utility from a Git clone of the repository, use *npm link* to register it on your system:
 
@@ -25,19 +25,55 @@ Use *oclif-dev* to build native packages:
 
 > To build Windows packages, you must run this command on a Windows system that has [7-Zip](https://www.7-zip.org/) installed.
 <!-- deploymentstop -->
+## Usage
+
+Ensure that you have an AWS configuration on your computer, with a profile.
 
 <!-- usage -->
 ```sh-session
-$ npm install -g sideboard
-$ sb COMMAND
-running command...
-$ sb (-v|--version|version)
-sideboard/0.1.0 darwin-x64 node-v12.20.1
-$ sb --help [COMMAND]
-USAGE
-  $ sb COMMAND
-...
+$ sb init
+Sideboard: Initializing
+Generating configuration. Bucket: xcinat26g5r-qhokbxs2jr-eu-west-1 in eu-west-1
+New configuration saved to /Users/you/.config/sideboard
+Created the S3 bucket. Bucket: xcinat26g5r-qhokbxs2jr-eu-west-1 in eu-west-1
+To access this bucket, use the S3 address s3://xcinat26g5r-qhokbxs2jr-eu-west-1
+Example: aws s3 ls s3://xcinat26g5r-qhokbxs2jr-eu-west-1 --region eu-west-1
 ```
+
+Use the *list* subcommand to see the contents of the bucket: 
+
+```sh-session
+❯ sb list
+Sideboard: List
+Listing contents of the S3 bucket xcinat26g5r-qhokbxs2jr-eu-west-1 in eu-west-1
+┌──────────────────────────────────────────────────┬──────────┐
+│ Object                                           │ Size     │
+├──────────────────────────────────────────────────┼──────────┤
+│ example.docx                                     │ 1049     │
+└──────────────────────────────────────────────────┴──────────┘
+```
+
+Use the *presign* subcommand to get a URL for any file in the bucket:
+
+<!-- usage -->
+```sh-session
+$ sb presign -f example.docx
+https://xcinat26g5r-qhokbxs2jr-eu-west-1.s3.eu-west-1.amazonaws.com/example.docx?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAU3K6EMT53PLHZSE2%2F20210518%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20210518T194421Z&X-Amz-Expires=3600&X-Amz-Signature=070ff99887327a688f91b3375022b4ec60611773fc01c7a87d45cf0095c3b2d5&X-Amz-SignedHeaders=host&x-amz-user-agent=aws-sdk-js%2F3.6.0%20os%2Fdarwin%2F19.6.0%20lang%2Fjs%20md%2Fnodejs%2F12.22.1%20api%2Fs3%2F3.6.0&x-id=GetObject
+```
+
+Once it has been generated, a presigned URL can be used by *anyone* to download the file. They do not need to have an AWS account.
+
+> Each presigned URL is only valid for a specified length of time. By default, *sideboard presign* generates URLs that valid for one hour.
+
+You can empty or delete the S3 bucket at any time. Use the *destroy* subcommand to empty the bucket and remove it from AWS:
+
+```sh-session
+$ sb destroy
+Sideboard: Destroy
+Deleted the contents of the S3 bucket. Bucket: xcinat26g5r-qhokbxs2jr-eu-west-1 in eu-west-1
+Destroyed the S3 bucket. Bucket: xcinat26g5r-qhokbxs2jr-eu-west-1 in eu-west-1
+```
+
 <!-- usagestop -->
 
 <!-- commands -->
